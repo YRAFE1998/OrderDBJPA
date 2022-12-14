@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <changeSet id="create-table-customer-if-not-exist" author="yousef.refaat">
+        <sql>
+        create table if not exists customer (
+            id bigint not null auto_increment primary key,
+            customer_name VARCHAR(50),
+            address varchar(30),
+            city varchar(30),
+            state varchar(30),
+            zip_code varchar(30),
+            phone varchar(20),
+            email varchar(255),
+            creation_date timestamp,
+            last_modified timestamp
+        ) engine=InnoDB;
+
+        </sql>
+    </changeSet>
+</databaseChangeLog>

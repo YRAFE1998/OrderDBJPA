@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <changeSet id="create-table-category-and-join-table-product-category" author="yousef.refaat">
+        <sql>
+            create table if not exists category  (
+            id bigint not null auto_increment primary key,
+            description varchar(50),
+            creation_date timestamp,
+            last_modified timestamp
+            );
+
+            create table if not exists product_category (
+            product_id bigint not null,
+            category_id bigint not null,
+            primary key (product_id, category_id),
+            constraint pc_product_id_fk FOREIGN KEY (product_id) references product(id),
+            constraint pc_category_id_fk FOREIGN KEY (category_id) references category(id)
+            );
+
+            insert into product (description, product_status, creation_date, last_modified)
+            values ('PRODUCT1', 'NEW', now(), now());
+
+            insert into product (description, product_status, creation_date, last_modified)
+            values ('PRODUCT2', 'NEW', now(), now());
+
+            insert into product (description, product_status, creation_date, last_modified)
+            values ('PRODUCT3', 'NEW', now(), now());
+
+            insert into product (description, product_status, creation_date, last_modified)
+            values ('PRODUCT4', 'NEW', now(), now());
+
+            insert into category (description, creation_date, last_modified) VALUES
+            ('CAT1', now(), now());
+
+            insert into category (description, creation_date, last_modified) VALUES
+            ('CAT2', now(), now());
+
+            insert into category (description, creation_date, last_modified) VALUES
+            ('CAT3', now(), now());
+
+            insert into product_category (product_id, category_id)
+            SELECT p.id, c.id FROM product p, category c
+            where p.description = 'PRODUCT1' and c.description = 'CAT1';
+
+            insert into product_category (product_id, category_id)
+            SELECT p.id, c.id FROM product p, category c
+            where p.description = 'PRODUCT2' and c.description = 'CAT1';
+
+            insert into product_category (product_id, category_id)
+            SELECT p.id, c.id FROM product p, category c
+            where p.description = 'PRODUCT1' and c.description = 'CAT3';
+
+            insert into product_category (product_id, category_id)
+            SELECT p.id, c.id FROM product p, category c
+            where p.description = 'PRODUCT4' and c.description = 'CAT3';
+        </sql>
+    </changeSet>
+</databaseChangeLog>

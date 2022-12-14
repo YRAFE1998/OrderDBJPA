@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <changeSet id="add-address-columns-to-order-header" author="yousef.refaat">
+        <sql>
+            alter table order_header
+            add column shipping_address varchar(30),
+            add column shipping_city varchar(30),
+            add column shipping_state varchar(30),
+            add column shipping_zip_code varchar(30),
+            add column bill_to_address varchar(30),
+            add column bill_to_city varchar(30),
+            add column bill_to_state varchar(30),
+            add column bill_to_zip_code varchar(30);
+        </sql>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
+      http://www.liquibase.org/xml/ns/pro
+      http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd">
+
+        <include file="db/changelog/create-table-order-header.xml"/>
+        <include file="db/changelog/add-address-columns-to-order-header.xml"/>
+        <include file="db/changelog/add-column-order-status-to-order-header.xml"/>
+        <include file="db/changelog/add-column-creation-date-to-order-header.xml"/>
+        <include file="db/changelog/add-column-last-modified-to-order-header.xml"/>
+        <include file="db/changelog/create-table-product.xml"/>
+        <include file="db/changelog/fix-columns-creation-date-and-last-modified-in-product.xml"/>
+        <include file="db/changelog/create-table-order_line.xml"/>
+        <include file="db/changelog/add-product-id-column-to-order-line.xml"/>
+        <include file="db/changelog/create-table-category-and-join-table-product-category.xml"/>
+        <include file="db/changelog/create-table-customer.xml"/>
+        <include file="db/changelog/alter-table-order-header-add-column-customer-id.xml"/>
+        <include file="db/changelog/alter-table-order-header-drop-customer-name.xml"/>
+        <include file="db/changelog/create-table-order-approval.xml"/>
+        <include file="db/changelog/add-column-order-approval-to-order-header.xml"/>
+</databaseChangeLog>
