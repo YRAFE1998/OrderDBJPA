@@ -11,7 +11,7 @@ public class Product extends BaseEntity{
 
     private String description;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(
             name = "product_category",
             joinColumns = @JoinColumn(name = "product_id"),
