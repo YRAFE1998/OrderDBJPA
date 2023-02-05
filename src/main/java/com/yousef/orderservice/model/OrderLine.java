@@ -7,11 +7,23 @@ public class OrderLine extends BaseEntity{
 
     private int quantityOrdered;
 
+    @Version
+    private Integer version;
+
     @ManyToOne(targetEntity = OrderHeader.class)
     private OrderHeader orderHeader;
 
     @ManyToOne
     private Product product;
+
+
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
+    }
 
     public int getQuantityOrdered() {
         return quantityOrdered;

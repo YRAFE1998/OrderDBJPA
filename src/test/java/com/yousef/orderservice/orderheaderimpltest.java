@@ -1,5 +1,6 @@
 package com.yousef.orderservice;
 
+import com.yousef.orderservice.DAO.CustomerDAO;
 import com.yousef.orderservice.DAO.OrderHeaderDAO;
 import com.yousef.orderservice.DAO.ProductDAO;
 import com.yousef.orderservice.model.*;
@@ -14,6 +15,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 import javax.transaction.Transactional;
 
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Set;
@@ -30,6 +32,9 @@ public class orderheaderimpltest {
 
     @Autowired
     ProductDAO productDAO;
+
+    @Autowired
+    CustomerDAO customerDAO;
 
 
     @Test
@@ -67,6 +72,7 @@ public class orderheaderimpltest {
         Product product = new Product();
         product.setProductStatus(ProductStatus.NEW);
         product.setCreationDate(Timestamp.valueOf(LocalDateTime.now()));
+
         Product savedProduct = productDAO.saveNewProduct(product);
 
 
@@ -116,10 +122,19 @@ public class orderheaderimpltest {
         //o1.setCustomerName("Yousef Refaat Ahmed");
         o1.setOrderStatus(OrderStatus.NEW);
         o1.setCreationDate(Timestamp.valueOf(LocalDateTime.now()));
+        OrderApproval orderApproval = new OrderApproval();
+        orderApproval.setApprovedBy("Mohamed Hany");
+        orderApproval.setCreationDate(Timestamp.valueOf(LocalDateTime.now()));
+        orderApproval.setLastModified(Timestamp.valueOf(LocalDateTime.now()));
+        o1.setOrderApproval(orderApproval);
+        Customer customer = customerDAO.getById(2L);
+        o1.setCustomer(customer);
         OrderHeader saved = orderHeaderDAO.saveNewOrderHeader(o1);
         try {
             TimeUnit.SECONDS.sleep(10);
-            //saved.setCustomerName("Changed");
+            Address billingUpdated = saved.getBillingAddress();
+            billingUpdated.setState("New Giza");
+            saved.setBillingAddress(billingUpdated);
             OrderHeader updated = orderHeaderDAO.updateOrderHeader(saved);
             //assertThat(updated.getCustomerName()).isEqualTo("Changed");
         } catch (InterruptedException e) {

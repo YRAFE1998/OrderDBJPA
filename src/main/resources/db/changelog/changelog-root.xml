@@ -23,4 +23,11 @@
         <include file="db/changelog/alter-table-order-header-drop-customer-name.xml"/>
         <include file="db/changelog/create-table-order-approval.xml"/>
         <include file="db/changelog/add-column-order-approval-to-order-header.xml"/>
+        <include file="db/changelog/add-version-column-to-customers.xml"/>
+        <include file="db/changelog/add-version-column-to-order-header.xml"/>
+        <include file="db/changelog/add-version-column-to-order-line.xml"/>
+        <include file="db/changelog/set-null-version-to-0.xml"/>
+        <include file="db/changelog/add-column-quantity-on-hand-to-product.xml"/>
+
+
 </databaseChangeLog>

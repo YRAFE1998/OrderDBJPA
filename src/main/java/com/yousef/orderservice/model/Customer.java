@@ -2,21 +2,32 @@ package com.yousef.orderservice.model;
 
 
 import org.hibernate.criterion.Order;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.Version;
+import javax.validation.constraints.Email;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 public class Customer extends BaseEntity {
+
+    @Length(max = 50)
     private String customerName;
 
     @Embedded
     private Address address;
+    @Length(max = 20)
     private String phone;
+    @Length(max = 255)
+    @Email
     private String email;
+
+    @Version
+    private Integer version;
 
 
     @OneToMany(mappedBy = "customer")
@@ -32,6 +43,14 @@ public class Customer extends BaseEntity {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
     }
 
     public void setAddress(Address address) {

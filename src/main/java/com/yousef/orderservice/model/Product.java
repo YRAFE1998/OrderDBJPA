@@ -19,6 +19,8 @@ public class Product extends BaseEntity{
     )
     private Set<Category> categories;
 
+    private Integer quantityOnHand;
+
     public Set<Category> getCategories() {
         return categories;
     }
@@ -55,7 +57,9 @@ public class Product extends BaseEntity{
         if (getProductStatus() != product.getProductStatus()) return false;
         if (getDescription() != null ? !getDescription().equals(product.getDescription()) : product.getDescription() != null)
             return false;
-        return getCategories() != null ? getCategories().equals(product.getCategories()) : product.getCategories() == null;
+        if (getCategories() != null ? !getCategories().equals(product.getCategories()) : product.getCategories() != null)
+            return false;
+        return getQuantityOnHand() != null ? getQuantityOnHand().equals(product.getQuantityOnHand()) : product.getQuantityOnHand() == null;
     }
 
     @Override
@@ -63,6 +67,17 @@ public class Product extends BaseEntity{
         int result = super.hashCode();
         result = 31 * result + (getProductStatus() != null ? getProductStatus().hashCode() : 0);
         result = 31 * result + (getDescription() != null ? getDescription().hashCode() : 0);
+        result = 31 * result + (getCategories() != null ? getCategories().hashCode() : 0);
+        result = 31 * result + (getQuantityOnHand() != null ? getQuantityOnHand().hashCode() : 0);
         return result;
     }
+
+    public Integer getQuantityOnHand() {
+        return quantityOnHand;
+    }
+
+    public void setQuantityOnHand(Integer quantityOnHand) {
+        this.quantityOnHand = quantityOnHand;
+    }
+
 }

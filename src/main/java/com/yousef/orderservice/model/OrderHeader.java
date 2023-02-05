@@ -33,6 +33,9 @@ public class OrderHeader extends BaseEntity{
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
 
+    @Version
+    private Integer version;
+
 
     @OneToMany(mappedBy = "orderHeader", cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
     private Set<OrderLine> orderLines;
@@ -45,9 +48,18 @@ public class OrderHeader extends BaseEntity{
     private OrderApproval orderApproval;
 
 
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
+    }
+
     public OrderApproval getOrderApproval(){
         return orderApproval;
     }
+
 
     public void setOrderApproval(OrderApproval orderApproval) {
         this.orderApproval = orderApproval;

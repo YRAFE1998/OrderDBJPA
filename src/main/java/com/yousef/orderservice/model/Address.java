@@ -1,12 +1,19 @@
 package com.yousef.orderservice.model;
 
+import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.Embeddable;
+import javax.validation.constraints.Size;
 
 @Embeddable
 public class Address {
+    @Size(max = 30)
     private String address;
+    @Length(max = 30)
     private String zipCode;
+    @Length(max = 30)
     private String city;
+    @Length(max = 30)
     private String state;
 
     public String getAddress() {

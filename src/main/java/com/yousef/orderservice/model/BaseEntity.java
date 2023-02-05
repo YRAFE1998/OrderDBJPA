@@ -1,9 +1,11 @@
 package com.yousef.orderservice.model;
 
+import org.aspectj.lang.annotation.Before;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import javax.validation.constraints.PastOrPresent;
 import java.sql.Timestamp;
 
 @MappedSuperclass
@@ -15,6 +17,8 @@ public abstract class BaseEntity {
 
     @CreationTimestamp
     @Column(updatable = false)
+
+    @PastOrPresent
     private Timestamp creationDate;
 
     @UpdateTimestamp
